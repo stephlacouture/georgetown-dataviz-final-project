@@ -1,5 +1,5 @@
-let width = 1000
-let height = 1000
+let width = 800
+let height = 600
 
 let tooltip = d3.select('#tooltip')
 
@@ -9,18 +9,19 @@ let offset = {
 }
 
 let margins = {
-	'top' : 40,
-	'right' : 40,
-	'bottom' : 80,
-	'left' : 80,
+	'top' : 10,
+	'right' : 10,
+	'bottom' : 50,
+	'left' : 40,
 }
 
-let xScale = d3.scaleLinear()
-	.domain([-10000,85000])
+let xScale = d3.scalePow()
+	.domain([0,85000])
 	.range([0,width-margins.left-margins.right])
+	.exponent(.5)
 
 let yScale = d3.scaleLinear()
-	.domain([100,-20])
+	.domain([100,30])
 	.range([0,height-margins.top-margins.bottom])
 
 let rScale = d3.scaleSqrt()
@@ -32,7 +33,7 @@ let colorScale = d3.scaleOrdinal ()
 	.domain(['Europe','Asia','Africa','NorthAmerica','SouthAmerica','CentralAmerica','Oceania'])
 	.range(['blue','red','green','pink','yellow','purple','gray'])
 
-let svg = d3.select('#chart').append('svg')
+let svg = d3.select('#chart-2').append('svg')
 	.attr('width',width)
 	.attr('height',height)
 
@@ -40,6 +41,7 @@ let inner = svg.append('g')
 	.attr('transform','translate('+margins.left+','+margins.top+')')
 
 let axisShell = inner.append('g')
+let labelShell = inner.append('g')
 
 let xAxis = d3.axisBottom(xScale)
 	.tickSize(-height+margins.top+margins.bottom)
@@ -54,10 +56,23 @@ axisShell.append('g')
 	.attr('transform',`translate(0,${height-margins.top-margins.bottom})`)
 	.call(xAxis)
 
+labelShell.append('text')
+	.attr('x', xScale(20000))
+	.attr('y', height-margins.top-margins.bottom + 40 )
+	.text('⬳ GDP per capita ⟿')
+	.attr('class', 'axis-label')
+
+labelShell.append('text')
+	.attr('x', -25)
+	.attr('y', yScale(65) )
+	.attr('transform','rotate(-90 -25 '+yScale(65)+')')
+	.text('⬳ Human development index ⟿')
+	.attr('class', 'axis-label')
+
 let marks = inner.append('g')
 
-d3.csv('data.csv').then((data) => {
-	console.log(data)
+d3.csv('Data.csv').then((data) => {
+	// console.log(data)
 
 	marks.selectAll('circle')
 		.data(data)
@@ -82,7 +97,9 @@ d3.csv('data.csv').then((data) => {
 			let left = d3.event.pageX + offset.left
 			let top = d3.event.pageY + offset.top
 
-			let html = '${d.Country}<br/>${d.Displaced} people'
+			console.log(d)
+
+			let html = d['Country Name']+'<br/>'+d['Displaced']+' people'
 
 			tooltip.html(html)
 				.style('left',left + 'px')

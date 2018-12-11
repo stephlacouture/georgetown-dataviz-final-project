@@ -6,8 +6,9 @@
     <title>What do countries that where most forcibly displaced people come from have in common?</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link rel="stylesheet" href="base.css" />
-    <!-- <link rel="stylesheet" href="FILENAME.css" /> -->
+    <link rel="stylesheet" href="scatterplot-style.css" />
   </head>
 
   <body>
@@ -23,7 +24,9 @@
 
       <h2 class="subhead">Where are the largest forcibly displaced populations from?</h2>
 
-      <div id="chart-1" class="DataViz-FinalMap.jpg"></div>
+      <div id="chart-1" class="chart">
+        <img src="DataViz-FinalMap-cropped.jpg" class="map-image"/>
+      </div>
       <p class="credit">Source: United Nations High Commissioner for Refugees (UNHCR)</p>
 
       <p>Without a doubt, Syrians are in the center of the biggest humanitarian and human rights crises taking place recently. About 13 million people, including men, women, and children, have fled their country’s civil war. Although officially no longer in crisis, Colombians are the second largest population forcibly displaced, with almost eight million people having flee their country in the last decade due to terror acts caused by the guerrillas. The Congolese population come in the unfortunate third place. More than five million people fled the Democratic Republic of Congo after a decades long conflict. The same number applies for the Afghans that have been forcibly displaced from their home fearing the Taliban regime and the recent wars that haven taken place in the country.<p>
@@ -34,7 +37,9 @@
       
       <h2 class="subhead">Economic and social conditions</h2>
 
-      <div id="chart-2" class="chart placeholder"></div>
+      <div id="chart-2" class="chart">
+        <div id="tooltip"></div>
+      </div>
       <p class="credit">Source: The World Bank</p>
 
       <p>In an effort to measure the overall welfare of the populations in these countries, we made a scatter plot for which we used GDP per Capita and the Human Development Index as the two variables to consider. The conclusion was very clear: of the 12 countries mentioned above, eight are among the 100 countries with the lowest GDP per Capita (Democratic Republic of the Congo, Somalia, Afghanistan, Nigeria, Ukraine, Sudan, Iraq, and Colombia), and of these, four are among the 50 countries with the lowest GDP per capita in the world. The remaining four countries, South Sudan, Yemen, Syria, and Venezuela have no data available, most likely, because the lack of appropriate governance is preventing this level of accountability.<p>
@@ -43,7 +48,9 @@
 
       <h2 class="subhead">How much freedom do these populations enjoy in their home countries?</h2>
 
-      <div id="chart-3" class="HumanFreedomIndex.jpg"></div>
+      <div id="chart-3" class="chart">
+        <img src="table.jpg" class="table-image"/>
+      </div>
       <p class="credit">Source: CATO Institute</p>
 
       <p>According to the CATO Institute, “human freedom is a social concept that recognizes the dignity of individuals and is defined as negative liberty or the absence of coercive constraint. Freedom is inherently valuable and plays a role in human progress”. Per this definition, it is logical to expect that if a country scores negatively on the freedom index, it is probable that its population would want to flee. It should be noted that there is not data available for 40 out of 187 countries. Interestingly, five of those are Sudan, South Sudan, Somalia, Iraq, and Afghanistan, which are all in the top 10 of countries of origin from which the most people flee.<p>
@@ -59,6 +66,9 @@
       <p>CATO Institute<p>
     
     </section>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 
 
   </body>
