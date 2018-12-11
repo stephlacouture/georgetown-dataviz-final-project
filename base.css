@@ -93,5 +93,9 @@ h2.subhead {
 .axis-label {
   text-anchor: middle;
   font-family: "Raleway", Helvetica, Arial, Sans-Serif;
+}
 
+.mark:hover {
+  stroke-width:2px;
+  stroke: black;
 }
